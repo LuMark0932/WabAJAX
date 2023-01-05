@@ -6,3 +6,68 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+<ul id="myUl"></ul>
+@section Styles{
+    <style>
+        h1 {
+            background-color: aliceblue
+        }
+    </style>
+}
+@section Scripts{
+    <script>
+
+         const emp = {
+            "employees": [
+                { "name": "Tom", "workYears": 3, "salary": 35000 },
+                { "name": "Jack", "workYears": 5, "salary": 40000 },
+                { "name": "Mary", "workYears": 7, "salary": 45000 }
+            ]
+                    };
+
+        console.log(emp.employees[0].name)
+        //for (var i = 0, max = emp.employees.length;i<max;i++){
+        //    console.log(emp.employees[i].name)
+        //    console.log(emp.employees[i].workYears)
+        //    console.log(emp.employees[i].salary)
+        //}
+        //const theUI = document.querySelector("#myUl")
+        //  for (var i = 0, max = emp.employees.length;i<max;i++){
+            //const { name ,workYears,salary}=emp.employees[i];
+            //const [name, ...restof] = emp.employees[i];
+            //console.log(name)
+            //console.log(workYears)
+            //console.log(salary)
+
+            //資料的顯示  DOM
+            //建立 li 元素節點 <li>
+            //const eleLi= document.createElement("li");
+            ////建立文字節點 name
+            //const txtLi = document.createTextNode(name);
+            //const txtLi2 = document.createTextNode(restof);
+            ////const txtLi2 = document.createTextNode(workYears);
+            ////const txtLi3 = document.createTextNode(salary);
+            ////將文字節點加到元素節點中 <li>name</li>
+            //eleLi.appendChild(txtLi)
+            //eleLi.appendChild(txtLi2)
+            ////eleLi.appendChild(txtLi3)
+            ////將li加到ul中 <ul><li></ul>
+            //theUI.appendChild(eleLi)
+        //}
+
+
+        //emp.employees.forEach((value,index,array)=>{
+        //    const {name, workYears, salary}=value;
+        //    console.log(name);
+
+
+                        const theUI = document.querySelector("#myUl")
+                        let datas =emp.employees.map((emp,index,array)=>{
+            const { name, workYears, salary } = emp;
+            return(`<li>${name}-${salary}</li>`);
+                        })
+        theUI.innerHTML=datas.join("")
+    </script>
+}
+
+

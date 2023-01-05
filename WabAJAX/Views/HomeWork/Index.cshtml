@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<div id="boby01" class="row">
+
+</div>
+@*
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="card-link">Card link</a>
+    <a href="#" class="card-link">Another link</a>
+  </div>
+</div>*@
+@section Scripts{
+    <script src="~/js/travel.js"></script>
+    <script>
+               for(var c of DATAS)
+               {
+               console.log(c);
+               }
+        const theUI = document.querySelector("#boby01")
+        let datas = DATAS.map((data, index, array) => {
+            const { InfoId, TYWebsite, Name, Toldescribe, Add, Zipcode, Opentime, Px, Py, Website, Parkinginfo, Ticketinfo, Remarks, Tel, Fax, Changetime } = data
+            return (`<div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">${Name}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">${Add}</h6>
+            <p class="card-text">${Toldescribe}</p>
+            <a href="${TYWebsite}" class="card-link">Card link</a>
+                    <a href="${Website}" class="card-link">Another link</a>
+          </div>
+        </div>`);
+        })
+        theUI.innerHTML = datas.join("")
+
+
+
+
+
+
+
+
+        //       $.each(DATAS,function(x,y){
+        //    $("#boby01").append(
+        //        `<div class="card" style="width: 18rem;">
+        //  <div class="card-body">
+        //    <h5 class="card-title">${y.Name}</h5>
+        //            <h6 class="card-subtitle mb-2 text-muted">${y.Add}</h6>
+        //            <p class="card-text">${y.Toldescribe}</p>
+        //                            <a href="${y.Website}" class="card-link">Website</a>
+        //            <a href="${y.TYWebsite}" class="card-link">TYWebsite</a>
+        //  </div>
+        //</div>`
+        //    )
+        //       })
+
+        
+
+
+    </script>
+}

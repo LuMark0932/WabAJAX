@@ -17,7 +17,10 @@ namespace WabAJAX.Controllers
         {
             return View();
         }
-
+        public IActionResult FirstAjax()
+        {
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();
