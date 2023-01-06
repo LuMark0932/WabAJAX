@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<WabAJAX.Models.Member>
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -7,6 +8,16 @@
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
 <ul id="myUl"></ul>
+<ul>
+    @foreach(var a in Model)
+    {
+        <li>@a.Name</li>
+        <li>@a.FileName</li>
+        <li>@a.Email</li>
+        <li>@a.Age</li>
+        <li>@a.FileData</li>
+    }
+</ul>
 @section Styles{
     <style>
         h1 {

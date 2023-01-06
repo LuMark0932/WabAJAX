@@ -7,15 +7,18 @@ namespace WabAJAX.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly DemoContext _conetxt;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, DemoContext conetxt)
         {
             _logger = logger;
+            _conetxt = conetxt;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var test =_conetxt.Members.Where(p=>p.MemberId== 1).ToList();
+            return View(test);
         }
         public IActionResult FirstAjax()
         {
