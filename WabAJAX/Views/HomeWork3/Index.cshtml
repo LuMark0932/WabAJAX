@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<h1>AJson</h1>
+<select id="select1">
+
+</select>
+<select id="select2"></select>
+<select id="select3"></select>
+@section Scripts{
+    <script>
+        const selCity = document.querySelector('#select1');
+        const selSite = document.querySelector('#select2');
+        const selRoad = document.querySelector('#select3');
+        loadCity()
+        async function loadCity() {
+            const reb = await fetch('@Url.Content("~/Api/City")')
+            const data = await reb.json();
+            const siteOpts = await data.map((value) => { return (`<option value=${value.city}>${value.city}</option>`); })
+            selCity.innerHTML = siteOpts.join("");
+        };
+    </script> 
+}

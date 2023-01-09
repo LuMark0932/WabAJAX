@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<form method="post" name="userForm">
+    <input type="text" name="Name" />
+    <input type="text" name="Email" />
+    <input type="text" name="Age" />
+    <input class="form-control" type="file" id="formFile" name="photo">
+    <input type="submit" value="click" />
+</form>
+<div id="div01" class="alert-info mt-3 p-3 w-25"></div>
+@section Scripts{
+    <script>
+        //const btn = document.querySelector('#button1');
+        //const theDiv = document.querySelector("#div01");
+        //const txt = document.querySelector("#text01")
+
+        const btn = document.querySelector(`input[type="submit"]`)
+
+        btn.addEventListener(`click`, (event) => {
+            event.preventDefault();
+            //步驟一建立Ajax物件
+            const xhr = new XMLHttpRequest();
+            xhr.addEventListener(`load`,()=>{
+                document.querySelector('#div01').innerHTML =xhr.responseText;
+            })     
+            //步驟二發出要求
+            //open("Http Method(GET、POST、PUT、DELETE)", "伺服器端的程式", 同步或非同步(預設))
+            const fornData = new FormData(document.userForm);
+            xhr.open("POST", `@Url.Content("~/Api/Homework")`);
+            xhr.send(fornData);
+
+        })
+    </script>
+}

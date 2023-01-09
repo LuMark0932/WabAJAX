@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewData["Title"] = "Fetch";
+}
+
+<h1>Fetch</h1>
+@section Scripts{
+    <script>
+        //fetch('@Url.Content("~/Api/index")')
+        //.then (a=>a.text())
+        //.then(a =>console.log(a))
+
+
+        async function colApiIndex (){
+            const reb = await fetch('@Url.Content("~/Api/index")')
+            const data = await reb.text()
+            console.log(data)
+        }
+        colApiIndex();
+    </script>
+}

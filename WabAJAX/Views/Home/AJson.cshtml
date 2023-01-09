@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewData["Title"] = "AJson";
+}
+
+<h1>AJson</h1>
+<select id="select1">
+
+</select>
+<select id="select2"></select>
+<select id="select3"></select>
+@section Scripts{
+    <script>
+       const selCity = document.querySelector('#select1');
+        const selSite = document.querySelector('#select2');
+        const selRoad = document.querySelector('#select3');
+        selCity.addEventListener('change', () => {
+            //console.log(selCity.selectedIndex)
+            //console.log(selCity.options[selCity.selectedIndex].text)
+            //console.log(selCity.options[selCity.selectedIndex].value)
+            loadSite();
+        })
+        selSite.addEventListener('change', () => {
+            loadRoad();
+        })
+
+
+
+        loadCity();
+        
+        
+        function loadCity(){
+            const xhr = new XMLHttpRequest();
+            xhr.addEventListener('load',()=>{
+                //要轉型成JSON物件 JSON.parse()
+              const datas = JSON.parse(xhr.responseText);                
+                //console.log(datas);
+                const cityOpts = datas.map((value)=> {
+                   return(
+                        `<option value=${value.city}>${value.city}</option>`
+                  );
+                })
+              selCity.innerHTML = cityOpts.join("");
+                //JSON物件轉成JSON字串 JSON.stringify()
+          //   console.log(JSON.stringify(datas));
+                loadSite();
+            })
+            xhr.open("GET", "@Url.Content("~/Api/City")");
+            xhr.send();
+        }
+        function loadSite() {
+          const xhr = new XMLHttpRequest();
+            xhr.addEventListener('load',()=>{
+                const datas = JSON.parse(xhr.responseText);
+                //console.log(datas);
+                const siteOpts = datas.map((value) => { return (`<option value=${value.siteId}>${value.siteId}</option>`); })
+                selSite.innerHTML = siteOpts.join("");
+                loadRoad();
+            })
+            const a = selCity.options[selCity.selectedIndex].value
+            xhr.open("GET", `@Url.Content("~/Api/SiteId?City=${a}")`);
+            xhr.send();
+        }
+        function loadRoad() {
+            const xhr = new XMLHttpRequest();
+            xhr.addEventListener('load', () => {
+                const datas = JSON.parse(xhr.responseText);
+                //console.log(datas);
+                const roadOpts  = datas.map((value) => { return (`<option value=${value.road}>${value.road}</option>`); })
+                selRoad.innerHTML = roadOpts .join("");
+            })
+            const a = selSite.options[selSite.selectedIndex].value
+            xhr.open("GET", `@Url.Content("~/Api/Road?SiteId=${a}")`);
+            xhr.send();
+        }
+    </script>
+}

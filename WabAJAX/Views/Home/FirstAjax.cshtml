@@ -57,7 +57,7 @@
 
   //步驟二發出要求
        //open("Http Method(GET、POST、PUT、DELETE)", "伺服器端的程式", 同步或非同步(預設))
-       xhr.open("GET",`/Api/index?name=${txt.value}`);
+       xhr.open("GET",`@Url.Content("~/Api/index?name=${txt.value}")`);
        xhr.timeout=3000;
        xhr.send();
 
